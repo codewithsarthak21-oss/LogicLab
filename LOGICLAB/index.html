@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGICLAB – Interactive Propositional Logic & Inference Engine</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Boxicons for Modern Mathematical & Academic UI Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="brand-section">
+                <div class="brand-logo">
+                    <div class="logo-icon">
+                        <i class='bx bx-brain'></i>
+                    </div>
+                    <div class="brand-text">
+                        <h1>LOGICLAB</h1>
+                        <span class="brand-badge">Discrete Math</span>
+                    </div>
+                </div>
+                <div class="course-info">
+                    <span>Course: 7MA206</span> • Unit I: Logic<br>
+                    SY IT Engineering • Track B
+                </div>
+            </div>
+
+            <ul class="nav-menu">
+                <div class="nav-section-title">Navigation</div>
+                <li class="nav-item">
+                    <a href="#dashboard" class="nav-link active" data-tab="dashboard">
+                        <i class='bx bx-grid-alt'></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#analyzer" class="nav-link" data-tab="analyzer">
+                        <i class='bx bx-analyse'></i> Expression Analyzer
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#equivalence" class="nav-link" data-tab="equivalence">
+                        <i class='bx bx-transfer'></i> Equivalence Checker
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#inference" class="nav-link" data-tab="inference">
+                        <i class='bx bx-git-branch'></i> Inference Engine
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#resolution" class="nav-link" data-tab="resolution">
+                        <i class='bx bx-atom'></i> Resolution Solver
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#natural-language" class="nav-link" data-tab="natural-language">
+                        <i class='bx bx-conversation'></i> Natural Language
+                    </a>
+                </li>
+
+                <div class="nav-section-title">Gamification & Learning</div>
+                <li class="nav-item">
+                    <a href="#quiz" class="nav-link" data-tab="quiz">
+                        <i class='bx bx-trophy'></i> Logic Challenge
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#learn" class="nav-link" data-tab="learn">
+                        <i class='bx bx-book-open'></i> Learn Logic (14 Topics)
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer">
+                <p><strong>LOGICLAB v1.0.0</strong></p>
+                <p>SY IT Discrete Mathematics 7MA206</p>
+                <p>Vanilla JS • Zero Backend Engine</p>
+            </div>
+        </aside>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Topbar Header -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Menu">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                    <div class="page-title-group">
+                        <h2>LOGICLAB – Propositional Calculus & Inference System</h2>
+                        <p>Unit I: Logic & Proof Techniques • College-Level Computational Engine</p>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <div class="meta-pill">
+                        <span class="dot"></span>
+                        <span>AST Parser Ready</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Views Container -->
+            <main class="content-body">
+
+                <!-- TAB 1: DASHBOARD -->
+                <section class="tab-view active" id="tab-dashboard">
+                    <div class="dashboard-hero">
+                        <div class="hero-tag">College Discrete Mathematics Interactive Suite</div>
+                        <h2>LOGICLAB: Interactive Propositional Logic & Inference Engine</h2>
+                        <p>A rigorous, educational computer science tool designed for SY IT students. Parse arbitrary formulas, generate complete 2ⁿ-row truth tables with intermediate subexpression columns, verify logical equivalences, test formal deductive inference rules, run Robinson's resolution refutation, and test your knowledge in the gamified challenge mode.</p>
+                    </div>
+
+                    <!-- Statistics Cards -->
+                    <div class="grid-4" style="margin-bottom: 24px;">
+                        <div class="stat-card">
+                            <div class="stat-icon primary"><i class='bx bx-wrench'></i></div>
+                            <div class="stat-info">
+                                <h4>8 Tools</h4>
+                                <span>Complete Logic Suite</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon cyan"><i class='bx bx-book-bookmark'></i></div>
+                            <div class="stat-info">
+                                <h4>14 Topics</h4>
+                                <span>Syllabus Notes</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon emerald"><i class='bx bx-check-shield'></i></div>
+                            <div class="stat-info">
+                                <h4>100%</h4>
+                                <span>Dynamic Input Support</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon amber"><i class='bx bx-atom'></i></div>
+                            <div class="stat-info">
+                                <h4>CNF Solver</h4>
+                                <span>Robinson Resolution</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Access Cards -->
+                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 16px; color: #ffffff;">Computational Modules</h3>
+                    <div class="grid-3" style="margin-bottom: 32px;">
+                        <div class="quick-card" data-tab="analyzer">
+                            <div>
+                                <i class='bx bx-analyse quick-card-icon'></i>
+                                <h4>Expression Analyzer & Truth Table</h4>
+                                <p>Parse arbitrary logic formulas, extract subexpressions, evaluate 2ⁿ rows, and classify into Tautology, Contradiction, or Contingency.</p>
+                            </div>
+                            <div class="quick-card-footer">
+                                <span>Launch Analyzer</span> <i class='bx bx-right-arrow-alt'></i>
+                            </div>
+                        </div>
+
+                        <div class="quick-card" data-tab="equivalence">
+                            <div>
+                                <i class='bx bx-transfer quick-card-icon'></i>
+                                <h4>Equivalence Checker</h4>
+                                <p>Compare any two expressions (A vs B), check if (A ↔ B) is a tautology, detect counterexamples, and test De Morgan's & Implication laws.</p>
+                            </div>
+                            <div class="quick-card-footer">
+                                <span>Verify Equivalence</span> <i class='bx bx-right-arrow-alt'></i>
+                            </div>
+                        </div>
+
+                        <div class="quick-card" data-tab="inference">
+                            <div>
+                                <i class='bx bx-git-branch quick-card-icon'></i>
+                                <h4>Inference Engine</h4>
+                                <p>Validate formal arguments via Critical Rows. Identify Modus Ponens, Modus Tollens, Disjunctive Syllogism, and detect formal fallacies.</p>
+                            </div>
+                            <div class="quick-card-footer">
+                                <span>Evaluate Deduction</span> <i class='bx bx-right-arrow-alt'></i>
+                            </div>
+                        </div>
+
+                        <div class="quick-card" data-tab="resolution">
+                            <div>
+                                <i class='bx bx-atom quick-card-icon'></i>
+                                <h4>Resolution Solver</h4>
+                                <p>Automated theorem proving via Robinson's Propositional Resolution. Resolve clauses, eliminate literals, and derive empty clause (□).</p>
+                            </div>
+                            <div class="quick-card-footer">
+                                <span>Solve Resolution</span> <i class='bx bx-right-arrow-alt'></i>
+                            </div>
+                        </div>
+
+                        <div class="quick-card" data-tab="natural-language">
+                            <div>
+                                <i class='bx bx-conversation quick-card-icon'></i>
+                                <h4>Natural Language Converter</h4>
+                                <p>Convert English statements ("If it is raining, then the ground is wet") into formal logic formulas (P → Q) with step-by-step reasoning.</p>
+                            </div>
+                            <div class="quick-card-footer">
+                                <span>Translate Statement</span> <i class='bx bx-right-arrow-alt'></i>
+                            </div>
+                        </div>
+
+                        <div class="quick-card" data-tab="quiz">
+                            <div>
+                                <i class='bx bx-trophy quick-card-icon'></i>
+                                <h4>Logic Challenge (Quiz)</h4>
+                                <p>Gamified quiz mode with dynamic questions, timer, scoring, levels (Novice to Master), streaks, hints, and detailed explanations.</p>
+                            </div>
+                            <div class="quick-card-footer">
+                                <span>Play Challenge</span> <i class='bx bx-right-arrow-alt'></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity & Audit Log -->
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3><i class='bx bx-history'></i> Recent Operations Audit Trail</h3>
+                                <p>Live chronological log of computed formulas, classifications, and deductions</p>
+                            </div>
+                        </div>
+                        <ul class="activity-list" id="recent-activity-list">
+                            <li class="empty-state">No operations performed yet. Try evaluating an expression!</li>
+                        </ul>
+                    </div>
+                </section>
+
+
+                <!-- TAB 2: EXPRESSION ANALYZER & TRUTH TABLE GENERATOR -->
+                <section class="tab-view" id="tab-analyzer">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3><i class='bx bx-analyse'></i> Expression Analyzer & Truth Table Generator</h3>
+                                <p>Enter any valid propositional logic formula to parse its AST, decompose subexpressions, generate the complete truth table, and classify it.</p>
+                            </div>
+                            <div class="card-badge">Features 1, 2, 3 & 10</div>
+                        </div>
+
+                        <!-- Virtual Keypad -->
+                        <div class="keypad-container" data-target="analyzer-input">
+                            <div class="keypad-title">Virtual Logic Keypad (Click to Insert)</div>
+                            <div class="keypad-grid">
+                                <button type="button" class="keypad-btn op-btn" data-symbol="∧">∧ (AND)</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="∨">∨ (OR)</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="¬">¬ (NOT)</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="→">→ (IMPLIES)</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="↔">↔ (IFF)</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="⊕">⊕ (XOR)</button>
+                                <button type="button" class="keypad-btn" data-symbol="(">(</button>
+                                <button type="button" class="keypad-btn" data-symbol=")">)</button>
+                                <button type="button" class="keypad-btn var-btn" data-symbol="P">P</button>
+                                <button type="button" class="keypad-btn var-btn" data-symbol="Q">Q</button>
+                                <button type="button" class="keypad-btn var-btn" data-symbol="R">R</button>
+                                <button type="button" class="keypad-btn var-btn" data-symbol="S">S</button>
+                                <button type="button" class="keypad-btn action-btn" data-symbol="BACKSPACE"><i class='bx bx-backspace'></i></button>
+                                <button type="button" class="keypad-btn action-btn" data-symbol="CLEAR">Clear</button>
+                            </div>
+                        </div>
+
+                        <!-- Expression Input Form -->
+                        <div class="form-group">
+                            <label class="form-label" for="analyzer-input">Propositional Logic Expression:</label>
+                            <div class="input-with-actions">
+                                <input type="text" id="analyzer-input" class="logic-input" placeholder="e.g. (P → Q) ∧ P or (P ∧ Q) → R" autocomplete="off" spellcheck="false">
+                                <button type="button" class="btn btn-primary" id="analyze-btn">
+                                    <i class='bx bx-play'></i> Analyze & Generate
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="analyzer-clear-btn">
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Presets Dropdown & Chips -->
+                        <div class="form-group" style="margin-bottom: 12px;">
+                            <label class="form-label" for="analyzer-presets">College Discrete Math Syllabus Presets:</label>
+                            <select id="analyzer-presets" class="select-control" style="width: 100%;">
+                                <option value="">-- Choose a standard syllabus test case --</option>
+                                <option value="(P → Q) ∧ P">(P → Q) ∧ P — Contingency (Modus Ponens antecedent)</option>
+                                <option value="(P ∧ Q) → R">(P ∧ Q) → R — 3-Variable Implication (8 Rows)</option>
+                                <option value="(P ∨ Q) ∧ ¬P">(P ∨ Q) ∧ ¬P — Disjunctive Syllogism form</option>
+                                <option value="P ∨ ¬P">P ∨ ¬P — Tautology (Law of Excluded Middle)</option>
+                                <option value="P ∧ ¬P">P ∧ ¬P — Contradiction (Non-Contradiction Principle)</option>
+                                <option value="P → (Q → P)">P → (Q → P) — Tautology (Axiom 1)</option>
+                                <option value="(P → Q) ↔ (¬P ∨ Q)">(P → Q) ↔ (¬P ∨ Q) — Tautology (Implication Law)</option>
+                                <option value="P ↔ Q">P ↔ Q — Biconditional Equivalence</option>
+                                <option value="¬(P ∧ Q) ↔ (¬P ∨ ¬Q)">¬(P ∧ Q) ↔ (¬P ∨ ¬Q) — De Morgan's Law</option>
+                            </select>
+                        </div>
+
+                        <div class="preset-chips-group">
+                            <span class="preset-chip-label">Quick Test Cases:</span>
+                            <span class="preset-chip" data-target="analyzer-input" data-expr="P ∨ ¬P">P ∨ ¬P</span>
+                            <span class="preset-chip" data-target="analyzer-input" data-expr="P ∧ ¬P">P ∧ ¬P</span>
+                            <span class="preset-chip" data-target="analyzer-input" data-expr="P ∧ Q">P ∧ Q</span>
+                            <span class="preset-chip" data-target="analyzer-input" data-expr="P → Q">P → Q</span>
+                            <span class="preset-chip" data-target="analyzer-input" data-expr="(P → Q) ∧ P">(P → Q) ∧ P</span>
+                            <span class="preset-chip" data-target="analyzer-input" data-expr="P ↔ Q">P ↔ Q</span>
+                            <span class="preset-chip" data-target="analyzer-input" data-expr="(P ∧ Q) → R">(P ∧ Q) → R</span>
+                        </div>
+
+                        <!-- Friendly Error Message Box -->
+                        <div class="error-alert" id="analyzer-error"></div>
+
+                        <!-- Results Container -->
+                        <div id="analyzer-results" style="display: none;">
+                            <!-- Classification Banner -->
+                            <div class="status-banner" id="classification-card">
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <h4 id="classification-title">Classification</h4>
+                                    <span class="badge" id="classification-badge">TAUTOLOGY</span>
+                                </div>
+                                <p id="classification-desc"></p>
+                            </div>
+
+                            <!-- Metrics Row -->
+                            <div class="metrics-row">
+                                <div class="metric-item">
+                                    <div class="metric-label">Variables</div>
+                                    <div class="metric-value" id="metric-vars">P, Q</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">Total Rows (2ⁿ)</div>
+                                    <div class="metric-value" id="metric-rows">4</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">True Outcomes (T)</div>
+                                    <div class="metric-value" id="metric-true" style="color: var(--color-true);">1 (25%)</div>
+                                </div>
+                                <div class="metric-item">
+                                    <div class="metric-label">False Outcomes (F)</div>
+                                    <div class="metric-value" id="metric-false" style="color: var(--color-false);">3 (75%)</div>
+                                </div>
+                            </div>
+
+                            <!-- Step-by-Step Mathematical Reasoning -->
+                            <div class="card" style="background: #0e1524; border-color: rgba(99, 102, 241, 0.2);">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3><i class='bx bx-list-check'></i> Step-by-Step Mathematical Reasoning</h3>
+                                        <p>Explicit derivation from variable detection to truth valuation and classification</p>
+                                    </div>
+                                    <div class="card-badge">Feature 10</div>
+                                </div>
+                                <div class="reasoning-timeline" id="analyzer-reasoning-steps"></div>
+                            </div>
+
+                            <!-- Truth Table -->
+                            <div class="card" style="margin-bottom: 0;">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3><i class='bx bx-table'></i> Complete Truth Table with Intermediate Subexpressions</h3>
+                                        <p>Hierarchical column decomposition with highlighted truth values</p>
+                                    </div>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button type="button" class="btn btn-secondary btn-sm" id="format-toggle-btn">
+                                            Display: T / F
+                                        </button>
+                                        <button type="button" class="btn btn-secondary btn-sm" id="copy-markdown-btn">
+                                            <i class='bx bx-copy'></i> Copy Markdown
+                                        </button>
+                                        <button type="button" class="btn btn-secondary btn-sm" id="copy-csv-btn">
+                                            <i class='bx bx-download'></i> Export CSV
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="academic-table">
+                                        <thead id="truth-table-head"></thead>
+                                        <tbody id="truth-table-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- TAB 3: LOGICAL EQUIVALENCE CHECKER -->
+                <section class="tab-view" id="tab-equivalence">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3><i class='bx bx-transfer'></i> Logical Equivalence Checker</h3>
+                                <p>Compare two arbitrary propositional formulas (Expression A and Expression B) to determine if they possess identical truth functions across all valuations.</p>
+                            </div>
+                            <div class="card-badge">Feature 4</div>
+                        </div>
+
+                        <!-- Virtual Keypad -->
+                        <div class="keypad-container" data-target="equiv-input-a">
+                            <div class="keypad-title">Virtual Logic Keypad (Applies to Active Input)</div>
+                            <div class="keypad-grid">
+                                <button type="button" class="keypad-btn op-btn" data-symbol="∧">∧</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="∨">∨</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="¬">¬</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="→">→</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="↔">↔</button>
+                                <button type="button" class="keypad-btn op-btn" data-symbol="⊕">⊕</button>
+                                <button type="button" class="keypad-btn" data-symbol="(">(</button>
+                                <button type="button" class="keypad-btn" data-symbol=")">)</button>
+                                <button type="button" class="keypad-btn var-btn" data-symbol="P">P</button>
+                                <button type="button" class="keypad-btn var-btn" data-symbol="Q">Q</button>
+                                <button type="button" class="keypad-btn var-btn" data-symbol="R">R</button>
+                                <button type="button" class="keypad-btn action-btn" data-symbol="CLEAR">Clear</button>
+                            </div>
+                        </div>
+
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="equiv-input-a">Expression A:</label>
+                                <input type="text" id="equiv-input-a" class="logic-input" value="P → Q" autocomplete="off" spellcheck="false">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="equiv-input-b">Expression B:</label>
+                                <input type="text" id="equiv-input-b" class="logic-input" value="¬P ∨ Q" autocomplete="off" spellcheck="false">
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+                            <button type="button" class="btn btn-primary" id="check-equiv-btn">
+                                <i class='bx bx-check-shield'></i> Verify Equivalence (A ≡ B)
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="equiv-swap-btn">
+                                <i class='bx bx-sync'></i> Swap A & B
+                            </button>
+                        </div>
+
+                        <!-- Presets -->
+                        <div class="form-group">
+                            <label class="form-label" for="equiv-presets">Famous Discrete Mathematics Equivalence Laws:</label>
+                            <select id="equiv-presets" class="select-control" style="width: 100%;">
+                                <option value="">-- Select an Equivalence Law to verify --</option>
+                                <option value="P → Q ;;; ¬P ∨ Q">Implication Law: P → Q ≡ ¬P ∨ Q</option>
+                                <option value="P → Q ;;; ¬Q → ¬P">Contrapositive Law: P → Q ≡ ¬Q → ¬P</option>
+                                <option value="¬(P ∧ Q) ;;; ¬P ∨ ¬Q">De Morgan's (AND): ¬(P ∧ Q) ≡ ¬P ∨ ¬Q</option>
+                                <option value="¬(P ∨ Q) ;;; ¬P ∧ ¬Q">De Morgan's (OR): ¬(P ∨ Q) ≡ ¬P ∧ ¬Q</option>
+                                <option value="P ∧ (Q ∨ R) ;;; (P ∧ Q) ∨ (P ∧ R)">Distributive Law: P ∧ (Q ∨ R) ≡ (P ∧ Q) ∨ (P ∧ R)</option>
+                                <option value="P ↔ Q ;;; (P → Q) ∧ (Q → P)">Biconditional: P ↔ Q ≡ (P → Q) ∧ (Q → P)</option>
+                                <option value="¬(¬P) ;;; P">Double Negation: ¬(¬P) ≡ P</option>
+                                <option value="P ∨ (P ∧ Q) ;;; P">Absorption Law: P ∨ (P ∧ Q) ≡ P</option>
+                                <option value="P → Q ;;; Q → P">Non-Equivalence (Converse Fallacy): P → Q ≢ Q → P</option>
+                            </select>
+                        </div>
+
+                        <div class="error-alert" id="equiv-error"></div>
+
+                        <!-- Equivalence Results -->
+                        <div id="equiv-results" style="display: none;">
+                            <div class="status-banner" id="equiv-status-box">
+                                <h4 id="equiv-status-title">Verdict</h4>
+                                <p id="equiv-status-desc"></p>
+                            </div>
+
+                            <div class="card" style="background: #0e1524; border-color: rgba(99, 102, 241, 0.2);">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3><i class='bx bx-list-check'></i> Step-by-Step Equivalence Reasoning</h3>
+                                    </div>
+                                </div>
+                                <div class="reasoning-timeline" id="equiv-reasoning-steps"></div>
+                            </div>
+
+                            <div class="card" style="margin-bottom: 0;">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3><i class='bx bx-table'></i> Comparative Truth Table & Biconditional (A ↔ B)</h3>
+                                        <p>Row-by-row verification of output parity</p>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="academic-table">
+                                        <thead id="equiv-table-head"></thead>
+                                        <tbody id="equiv-table-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- TAB 4: INFERENCE ENGINE -->
+                <section class="tab-view" id="tab-inference">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3><i class='bx bx-git-branch'></i> Propositional Inference Engine</h3>
+                                <p>Enter multiple deductive premises and a proposed conclusion. Validate the argument using the Critical Row Truth Table method and identify classical deduction rules.</p>
+                            </div>
+                            <div class="card-badge">Feature 5</div>
+                        </div>
+
+                        <!-- Presets -->
+                        <div class="form-group">
+                            <label class="form-label" for="inference-presets">Standard Classical Inference Patterns & Fallacies:</label>
+                            <select id="inference-presets" class="select-control" style="width: 100%;">
+                                <option value="">-- Choose an inference argument preset --</option>
+                                <option value="P → Q | P ;;; Q">Modus Ponens: P → Q, P ⊢ Q</option>
+                                <option value="P → Q | ¬Q ;;; ¬P">Modus Tollens: P → Q, ¬Q ⊢ ¬P</option>
+                                <option value="P → Q | Q → R ;;; P → R">Hypothetical Syllogism: P → Q, Q → R ⊢ P → R</option>
+                                <option value="P ∨ Q | ¬P ;;; Q">Disjunctive Syllogism: P ∨ Q, ¬P ⊢ Q</option>
+                                <option value="P ∧ Q ;;; P">Conjunctive Simplification: P ∧ Q ⊢ P</option>
+                                <option value="P | Q ;;; P ∧ Q">Conjunction Introduction: P, Q ⊢ P ∧ Q</option>
+                                <option value="P ;;; P ∨ Q">Disjunctive Addition: P ⊢ P ∨ Q</option>
+                                <option value="P → Q | Q ;;; P">Fallacy of Affirming the Consequent: P → Q, Q ⊢ P (INVALID)</option>
+                                <option value="P → Q | ¬P ;;; ¬Q">Fallacy of Denying the Antecedent: P → Q, ¬P ⊢ ¬Q (INVALID)</option>
+                            </select>
+                        </div>
+
+                        <!-- Premises Input Section -->
+                        <div class="form-group">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <label class="form-label" style="margin-bottom: 0;">Argument Premises:</label>
+                                <button type="button" class="btn btn-secondary btn-sm" id="add-premise-btn">
+                                    <i class='bx bx-plus'></i> Add Premise
+                                </button>
+                            </div>
+                            <div id="premises-container">
+                                <div class="premise-row">
+                                    <span class="premise-label">Premise 1:</span>
+                                    <input type="text" class="logic-input premise-input" value="P → Q">
+                                    <button type="button" class="btn-icon remove-premise-btn" title="Remove Premise"><i class='bx bx-trash'></i></button>
+                                </div>
+                                <div class="premise-row">
+                                    <span class="premise-label">Premise 2:</span>
+                                    <input type="text" class="logic-input premise-input" value="P">
+                                    <button type="button" class="btn-icon remove-premise-btn" title="Remove Premise"><i class='bx bx-trash'></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Conclusion Input -->
+                        <div class="form-group">
+                            <label class="form-label" for="conclusion-input">Proposed Conclusion (∴ C):</label>
+                            <input type="text" id="conclusion-input" class="logic-input" value="Q" placeholder="e.g. Q">
+                        </div>
+
+                        <button type="button" class="btn btn-primary" id="evaluate-inference-btn" style="margin-bottom: 20px;">
+                            <i class='bx bx-check-shield'></i> Validate Formal Argument
+                        </button>
+
+                        <div class="error-alert" id="inference-error"></div>
+
+                        <!-- Results Container -->
+                        <div id="inference-results" style="display: none;">
+                            <div class="status-banner" id="inference-status-banner">
+                                <h4 id="inference-status-title">Argument Status</h4>
+                                <p id="inference-status-desc"></p>
+                            </div>
+
+                            <!-- Formal Deduction Schema Box -->
+                            <div class="card" style="background: #0d1320;">
+                                <h4 style="font-size: 13px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px;">Formal Argument Schema</h4>
+                                <pre class="schema-box" id="inference-schema-display"></pre>
+                            </div>
+
+                            <!-- Reasoning Steps -->
+                            <div class="card" style="background: #0e1524; border-color: rgba(99, 102, 241, 0.2);">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3><i class='bx bx-list-check'></i> Step-by-Step Proof & Critical Row Analysis</h3>
+                                    </div>
+                                </div>
+                                <div class="reasoning-timeline" id="inference-reasoning-steps"></div>
+                            </div>
+
+                            <!-- Critical Rows Truth Table -->
+                            <div class="card" style="margin-bottom: 0;">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3><i class='bx bx-table'></i> Semantic Truth Table with Critical Row Identification</h3>
+                                        <p>Critical rows are valuations where ALL premises evaluate to TRUE</p>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="academic-table">
+                                        <thead id="inference-table-head"></thead>
+                                        <tbody id="inference-table-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- TAB 5: RESOLUTION SOLVER -->
+                <section class="tab-view" id="tab-resolution">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3><i class='bx bx-atom'></i> Propositional Resolution Solver</h3>
+                                <p>Automated theorem proving based on Robinson's Propositional Resolution principle. Resolves disjunctive clauses on complementary literal pairs (L and ¬L) to derive resolvents until the empty clause (□) or saturation is reached.</p>
+                            </div>
+                            <div class="card-badge">Feature 6</div>
+                        </div>
+
+                        <!-- Presets -->
+                        <div class="form-group">
+                            <label class="form-label" for="resolution-presets">Resolution Proof Presets:</label>
+                            <select id="resolution-presets" class="select-control" style="width: 100%;">
+                                <option value="">-- Choose a resolution theorem preset --</option>
+                                <option value="(P ∨ Q) ;;; (¬P ∨ R) ;;; ¬Q ;;; ¬R">Classic Refutation (4 Clauses) ⊢ Derives Empty Clause □</option>
+                                <option value="(¬P ∨ Q) ;;; P ;;; ¬Q">Modus Ponens Refutation: (¬P ∨ Q), P, ¬Q ⊢ □</option>
+                                <option value="(¬P ∨ Q) ;;; (¬Q ∨ R) ;;; P ;;; ¬R">Hypothetical Syllogism Refutation ⊢ □</option>
+                                <option value="(P ∨ Q) ;;; (¬P ∨ R)">Simple Resolution Step: (P ∨ Q), (¬P ∨ R) ⊢ (Q ∨ R)</option>
+                                <option value="(P ∨ Q) ;;; (¬P ∨ ¬Q) ;;; (¬P ∨ Q)">Pigeonhole Simple Clauses</option>
+                            </select>
+                        </div>
+
+                        <!-- Clauses Input Section -->
+                        <div class="form-group">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <label class="form-label" style="margin-bottom: 0;">Knowledge Base Clauses (Disjunction of Literals):</label>
+                                <button type="button" class="btn btn-secondary btn-sm" id="add-clause-btn">
+                                    <i class='bx bx-plus'></i> Add Clause
+                                </button>
+                            </div>
+                            <div id="clauses-container">
+                                <div class="clause-row">
+                                    <span class="clause-label">C1:</span>
+                                    <input type="text" class="logic-input clause-input" value="(P ∨ Q)">
+                                    <button type="button" class="btn-icon remove-clause-btn" title="Remove Clause"><i class='bx bx-trash'></i></button>
+                                </div>
+                                <div class="clause-row">
+                                    <span class="clause-label">C2:</span>
+                                    <input type="text" class="logic-input clause-input" value="(¬P ∨ R)">
+                                    <button type="button" class="btn-icon remove-clause-btn" title="Remove Clause"><i class='bx bx-trash'></i></button>
+                                </div>
+                                <div class="clause-row">
+                                    <span class="clause-label">C3:</span>
+                                    <input type="text" class="logic-input clause-input" value="¬Q">
+                                    <button type="button" class="btn-icon remove-clause-btn" title="Remove Clause"><i class='bx bx-trash'></i></button>
+                                </div>
+                                <div class="clause-row">
+                                    <span class="clause-label">C4:</span>
+                                    <input type="text" class="logic-input clause-input" value="¬R">
+                                    <button type="button" class="btn-icon remove-clause-btn" title="Remove Clause"><i class='bx bx-trash'></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary" id="solve-resolution-btn" style="margin-bottom: 20px;">
+                            <i class='bx bx-play'></i> Execute Resolution Algorithm
+                        </button>
+
+                        <div class="error-alert" id="resolution-error"></div>
+
+                        <!-- Resolution Results -->
+                        <div id="resolution-results" style="display: none;">
+                            <div class="status-banner" id="resolution-status-banner">
+                                <h4 id="resolution-status-title">Resolution Verdict</h4>
+                                <p id="resolution-status-desc"></p>
+                            </div>
+
+                            <!-- Reasoning Steps -->
+                            <div class="card" style="background: #0e1524; border-color: rgba(99, 102, 241, 0.2);">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3><i class='bx bx-list-check'></i> Step-by-Step Resolution Reasoning</h3>
+                                    </div>
+                                </div>
+                                <div class="reasoning-timeline" id="resolution-reasoning-steps"></div>
+                            </div>
+
+                            <!-- Visual Derivation Trace -->
+                            <div class="card" style="margin-bottom: 0;">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3><i class='bx bx-git-commit'></i> Step-by-Step Clause Derivation History</h3>
+                                        <p>Every single resolvent generated with parent lineage and cancelled literal</p>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="academic-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Step #</th>
+                                                <th>Clause ID</th>
+                                                <th>Parent 1</th>
+                                                <th>Parent 2</th>
+                                                <th>Resolved Literal</th>
+                                                <th>Resulting Resolvent</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="resolution-steps-body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- TAB 6: NATURAL LANGUAGE STATEMENT CONVERTER -->
+                <section class="tab-view" id="tab-natural-language">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3><i class='bx bx-conversation'></i> Natural Language Statement Converter</h3>
+                                <p>Educational tool translating English sentences into formal symbolic propositional expressions with grammatical decomposition.</p>
+                            </div>
+                            <div class="card-badge">Feature 7</div>
+                        </div>
+
+                        <!-- Profile Selection -->
+                        <div class="form-group">
+                            <label class="form-label" for="nl-profile-select">Preset Context Profile:</label>
+                            <select id="nl-profile-select" class="select-control" style="width: 100%;">
+                                <option value="0">Weather & Environment (Syllabus Standard)</option>
+                                <option value="1">Computer Science & Programming</option>
+                                <option value="2">Exam & Academic Success</option>
+                            </select>
+                        </div>
+
+                        <!-- Variable Definitions Card -->
+                        <div class="nl-var-card">
+                            <div class="form-label">Defined Propositional Variables:</div>
+                            <div class="nl-var-item">
+                                <span class="nl-var-tag">P:</span>
+                                <input type="text" id="nl-var-p" class="logic-input" value="It is raining">
+                            </div>
+                            <div class="nl-var-item">
+                                <span class="nl-var-tag">Q:</span>
+                                <input type="text" id="nl-var-q" class="logic-input" value="The ground is wet">
+                            </div>
+                            <div class="nl-var-item">
+                                <span class="nl-var-tag">R:</span>
+                                <input type="text" id="nl-var-r" class="logic-input" value="We carry an umbrella">
+                            </div>
+                        </div>
+
+                        <!-- Sentence Input -->
+                        <div class="form-group">
+                            <label class="form-label" for="nl-sentence-input">English Statement to Formalize:</label>
+                            <div class="input-with-actions">
+                                <input type="text" id="nl-sentence-input" class="logic-input" value="If it is raining, then the ground is wet.">
+                                <button type="button" class="btn btn-primary" id="nl-convert-btn">
+                                    <i class='bx bx-sync'></i> Convert
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Quick Template Sentences -->
+                        <div class="preset-chips-group">
+                            <span class="preset-chip-label">Quick Patterns:</span>
+                            <span class="preset-chip nl-preset-btn" data-sentence="If it is raining, then the ground is wet.">If P then Q</span>
+                            <span class="preset-chip nl-preset-btn" data-sentence="It is raining and the ground is wet.">P and Q</span>
+                            <span class="preset-chip nl-preset-btn" data-sentence="It is not the case that it is raining.">Not P</span>
+                            <span class="preset-chip nl-preset-btn" data-sentence="It is raining or the ground is wet.">P or Q</span>
+                            <span class="preset-chip nl-preset-btn" data-sentence="The ground is wet if and only if it is raining.">Q iff P</span>
+                            <span class="preset-chip nl-preset-btn" data-sentence="Neither it is raining nor the ground is wet.">Neither P nor Q</span>
+                        </div>
+
+                        <div class="error-alert" id="nl-error"></div>
+
+                        <!-- Conversion Results -->
+                        <div id="nl-results" style="display: none;">
+                            <div class="card" style="background: #0d1320; text-align: center; border-color: rgba(99, 102, 241, 0.3);">
+                                <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); margin-bottom: 4px;">Formal Symbolic Representation</div>
+                                <div id="nl-formula-display" style="font-size: 26px; font-weight: 800; color: #38bdf8; font-family: 'JetBrains Mono', monospace; margin-bottom: 12px;"></div>
+                                <div>
+                                    <button type="button" class="btn btn-secondary btn-sm" id="nl-send-to-analyzer-btn">
+                                        <i class='bx bx-analyse'></i> Send to Expression Analyzer & Truth Table
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="card" style="background: #0e1524;">
+                                <div class="card-header">
+                                    <div class="card-title-group">
+                                        <h3 id="nl-rule-title">Grammar Rule</h3>
+                                        <p id="nl-rule-explanation"></p>
+                                    </div>
+                                </div>
+                                <div class="reasoning-timeline" id="nl-reasoning-steps"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- TAB 7: LOGIC CHALLENGE (GAMIFIED QUIZ) -->
+                <section class="tab-view" id="tab-quiz">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3><i class='bx bx-trophy'></i> LogicLab Gamified Challenge Mode</h3>
+                                <p>Dynamic questions testing expression classification, logical equivalences, inference rules, and truth valuations.</p>
+                            </div>
+                            <div class="card-badge">Feature 8</div>
+                        </div>
+
+                        <!-- Quiz Welcome Screen -->
+                        <div id="quiz-welcome-screen" style="text-align: center; padding: 40px 20px;">
+                            <div style="font-size: 54px; color: #fbbf24; margin-bottom: 12px;"><i class='bx bx-award'></i></div>
+                            <h3 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Master Discrete Mathematics Logic</h3>
+                            <p style="color: var(--text-muted); max-width: 550px; margin: 0 auto 24px;">Earn points, maintain your streak, level up from Logic Novice to Discrete Math Master, and learn with step-by-step mathematical explanations.</p>
+                            <button type="button" class="btn btn-primary" id="quiz-start-btn" style="padding: 12px 28px; font-size: 15px;">
+                                <i class='bx bx-play-circle'></i> Start Logic Challenge
+                            </button>
+                        </div>
+
+                        <!-- Quiz Active Screen -->
+                        <div id="quiz-active-screen" style="display: none;">
+                            <!-- Heads-Up Display -->
+                            <div class="quiz-hud">
+                                <div class="quiz-hud-item">
+                                    <span class="hud-label">Score:</span>
+                                    <span class="hud-val" id="quiz-score-val">0</span>
+                                </div>
+                                <div class="quiz-hud-item">
+                                    <span class="hud-label">Streak:</span>
+                                    <span class="hud-val" id="quiz-streak-val" style="color: #fbbf24;">0</span>
+                                </div>
+                                <div class="quiz-hud-item">
+                                    <span class="badge badge-accent" id="quiz-level-badge">Lvl 1: Logic Novice</span>
+                                </div>
+                                <div class="quiz-hud-item">
+                                    <span class="timer-badge" id="quiz-timer-val">30s</span>
+                                </div>
+                            </div>
+
+                            <!-- Level Progress Bar -->
+                            <div style="background: rgba(255,255,255,0.06); height: 6px; border-radius: 3px; margin-bottom: 20px; overflow: hidden;">
+                                <div id="quiz-level-progress-bar" style="background: linear-gradient(to right, var(--primary), var(--secondary)); height: 100%; width: 0%; transition: width 0.3s ease;"></div>
+                            </div>
+
+                            <!-- Question Card -->
+                            <div class="quiz-question-box">
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+                                    <span class="badge badge-accent" id="quiz-category-badge">Category</span>
+                                    <button type="button" class="btn btn-secondary btn-sm" id="quiz-hint-btn">
+                                        <i class='bx bx-bulb'></i> Hint
+                                    </button>
+                                </div>
+                                <p id="quiz-prompt-text" style="color: #cbd5e1; font-size: 14.5px;"></p>
+                                <div class="quiz-formula-view" id="quiz-formula-display"></div>
+                                <h4 id="quiz-question-text" style="font-size: 16px; font-weight: 700; color: #ffffff;"></h4>
+
+                                <!-- Option Buttons Grid -->
+                                <div class="quiz-options-grid" id="quiz-options-container"></div>
+                            </div>
+
+                            <!-- Feedback Card -->
+                            <div class="quiz-feedback" id="quiz-feedback-box" style="display: none;">
+                                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                    <h4 id="quiz-feedback-title" style="font-size: 17px; font-weight: 800;"></h4>
+                                    <span id="quiz-feedback-points" style="font-weight: 700; font-size: 13px;"></span>
+                                </div>
+                                <div id="quiz-feedback-desc"></div>
+                                <div style="margin-top: 16px;">
+                                    <button type="button" class="btn btn-primary" id="quiz-next-btn">
+                                        Next Question <i class='bx bx-right-arrow-alt'></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <!-- TAB 8: LEARN LOGIC (14 SYLLABUS TOPICS) -->
+                <section class="tab-view" id="tab-learn">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title-group">
+                                <h3><i class='bx bx-book-open'></i> Discrete Mathematics Knowledge Base</h3>
+                                <p>Comprehensive academic curriculum notes covering all 14 topics of Unit I: Logic & Proof Techniques.</p>
+                            </div>
+                            <div class="card-badge">Feature 9</div>
+                        </div>
+
+                        <div class="learning-topics-grid" id="learning-topics-container">
+                            <!-- Populated dynamically via learning.js -->
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="app-toast" class="app-toast"></div>
+
+    <!-- Scripts (Modular Vanilla JS) -->
+    <script src="js/parser.js"></script>
+    <script src="js/truthTable.js"></script>
+    <script src="js/equivalence.js"></script>
+    <script src="js/inference.js"></script>
+    <script src="js/resolution.js"></script>
+    <script src="js/naturalLanguage.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/learning.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
